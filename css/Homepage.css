@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.container {
+    text-align: center;
+    margin: auto;
+}
+
+.button {
+    font-size: large;
+    font-weight:bolder;
+    border-radius: 20px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    /* background: #4CAF50; */
+    /* background: red; */
+    width: 100%;
+    border: 0;
+    padding: 30px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+/* .button a{
+    text-decoration: none;
+    font-size: large;
+    font-weight:bolder;
+} */
