@@ -58,6 +58,7 @@ function insert_user($db, $values){
 
     $run = mysqli_query($db, $sql_insert_tb_user) or die ("insert not successful");
     
+    //insert into table teacher or student depend on 'type'
     if($usertype == "teacher"){
         $name = $values["name"];
 
@@ -84,29 +85,44 @@ function insert_user($db, $values){
 
 //update student's profile by teacher
 function update_student($db, $current_username , $values){
+
+
     $id = $values["ID"];
     $username = $values['username'];
     $password = $values["password"];
     $usertype = $values["usertype"];
-    if($username == $current_username){
-        $sql_update_tb_user = "update user set password = '$password'
-                where username = '$current_username'";
-    }else{
-        $sql_update_tb_user = "update user set username='$username', password = '$password'
-                where username = '$current_username'";
-    }
-        
-    $run = mysqli_query($db, $sql_update_tb_user) or die ("update user not successful");
-
     $fullname = $values["fullname"];
     $email = $values["email"];
     $phone = $values["phone"];
     $teacher_username = $values["teacher_username"];
 
-    $sql_update_tb_student = "update student set username ='$username', fullname = '$fullname',
-        phone = '$phone', mail = '$email' where ID = '$id' and teacher_username = '$teacher_username'";
+    if($username == $current_username){
+        $sql_update_tb_user = "update user set password = '$password'
+                where username = '$current_username'";
+        $run = mysqli_query($db, $sql_update_tb_user) or die ("update user not successful");
 
-    $run = mysqli_query($db, $sql_update_tb_student) or die ("update not successful");
+        $sql_update_tb_student = "update student set fullname = '$fullname', phone = '$phone', 
+            mail = '$email' where ID = '$id' and teacher_username = '$teacher_username'";
+
+        $run = mysqli_query($db, $sql_update_tb_student) or die ("update not successful");
+    }else{
+        
+        $run = delete_student($db, $id, $current_username);
+        
+        //insert student into user table
+        $sql_insert_tb_user = "insert into user(username, password, usertype)
+            values ('$username', '$password', '$usertype')";
+        $run = mysqli_query($db, $sql_insert_tb_user) or die ("insert not successful");
+
+        //insert student into student table
+        $sql_insert_tb_student = "insert into student(ID, username, fullname, phone, mail, teacher_username)
+            values ('$id', '$username', '$fullname', '$phone', '$email', '$teacher_username')";
+        $run = mysqli_query($db, $sql_insert_tb_student) or die ("insert tb student not successful");
+
+        
+    }
+        
+    
     return true;
 }
 
@@ -167,7 +183,6 @@ function get_all_students($db, $teacher)
         echo "Failed to fetch data";
     }
      
-    // Trả kết quả về
     return $result;
 }
 
@@ -185,7 +200,6 @@ function get_all($db)
         echo "Failed to fetch data";
     }
      
-    // Trả kết quả về
     return $result;
 }
 

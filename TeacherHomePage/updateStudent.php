@@ -7,7 +7,7 @@
     {
         header("location: ..");
     }
-    echo $_SERVER["REQUEST_METHOD"];
+
     $current_student_username =  $_GET["student_username"];
     $_POST["ID"] = $_GET["id"];
 
@@ -16,22 +16,19 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"])){
         $_POST["teacher_username"] = $_SESSION["username"];
-        echo $_POST["ID"];
+        
         $s_username = $_POST["username"];
         $s_password = $_POST["password"];
         $s_confirm_password = $_POST["confirm_password"];
         $s_fullname = $_POST["fullname"];
         $s_email = $_POST["email"];
         $s_phone = $_POST["phone"];
-        
+
 
         if(!is_valid_username($s_username)){
             $msg_username = "Username must have lowercase characters (a-z) or numbers (0-9) or 
                             underscores(_), no special character and length from 5 to 30!";
         }
-        // if(is_exist($db, $s_username)){
-        //     $msg_username = "username already exist";
-        // }
         elseif(!check_password($db, $s_password)){
             $msg_password ="Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter.";
         }
