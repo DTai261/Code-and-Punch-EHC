@@ -5,18 +5,22 @@
     $msg_username = $msg_confirmation_password = $msg_fullname = "";
     $msg_weak_passowrd = "*Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter.";
     $success;
-
+    $db=mysqli_connect('localhost', 'root', '','demo');
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = $_POST["password"];
         $confirm_password = $_POST["confirm_password"];
         $username = $_POST["username"];
         $fullname = $_POST["name"];
-
-        if(!is_valid_fullname($fullname)){
+                // check sql injection
+                $username = mysqli_real_escape_string($db, $username );
+                $password = mysqli_real_escape_string($db, $password );
+                $confirm_password = mysqli_real_escape_string($db, $confirm_password );
+                $fullname  = mysqli_real_escape_string($db, $fullname  );
+        if(!is_valid_fullname($db,$fullname)){
             $msg_fullname = "Full name must have characters (a-z or A-Z), start with upper case and
                                 length from 5 to 30";
         }
-        elseif(!is_valid_username($username)){
+        elseif(!is_valid_username($db,$username)){
             $msg_username = "Username must have lowercase characters (a-z) or numbers (0-9) or 
                             underscores(_), no special character and length from 5 to 30!";
         }
