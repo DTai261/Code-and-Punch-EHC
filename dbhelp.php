@@ -203,4 +203,17 @@ function get_all($db)
     return $result;
 }
 
+function get_teacher($db, $student_username){
+    $sql = "select teacher_username from student where username = '$student_username'";    
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            return $row["teacher_username"];
+        }
+    } else {
+        echo "0 results";
+    }   
+}
+
 ?>

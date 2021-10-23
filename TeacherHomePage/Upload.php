@@ -40,6 +40,13 @@
                     $new_name =  $teacher_name . "." . $Assignment_name  . "." . $file_ext;
                     $file_destination = $dir . "/" . $new_name;
 
+                    //create folder for student to submit
+                    $folder_submit = $dir . "/" . $teacher_name . "." . $Assignment_name . ".submit";
+                    if(is_dir($folder_submit) === false )
+                    {
+                        mkdir($folder_submit);
+                    }
+                    
                     //check file already exist
                     if (file_exists($file_destination)){
                         header("location: UpLoadAssignment.php?msg=exist");
