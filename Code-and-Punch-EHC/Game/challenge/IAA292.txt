@@ -1,0 +1,12 @@
+1)E)Confidentiality, integrity, and availability
+2)B) Facility costs
+3)C)IT systems
+5)D)Penetration test
+6)D)PCI DSS
+8)B)It is a series of events recorded in one or more logs.
+9)D)Qualitative is a subjective observation, while a quantitative approach defines statistical costs associated with a threat.
+10)E)Minimum amount of time a system or service can be down before affecting the mission
+11)C)Data can easily be used in a CBA
+13)D)Identify threats
+14)E) Emergency Locator Transmitter
+15)B)AUP
