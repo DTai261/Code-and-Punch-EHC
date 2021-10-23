@@ -24,7 +24,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="#">
+            <form action="ListOfAssignment.php">
                 <button class="button" style="background: Green;">List of assignments </button>
             </form>
         </div>
