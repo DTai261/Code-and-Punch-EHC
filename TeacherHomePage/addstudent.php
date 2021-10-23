@@ -2,7 +2,7 @@
     include "../config.php";
     require_once('../dbhelp.php');
     session_start();
-
+    $db=mysqli_connect('localhost', 'root', '','demo');
     if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher" || !isset($_POST))
     {
         header("location: ..");
@@ -10,7 +10,7 @@
 
     $s_username = $s_email =$s_fullname = $s_password = $s_phone = $s_confirm_password = "";
     $msg_username =  $msg_fullname = $msg_password = $msg_phone = $msg_success ="";
-
+    
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"])){
         $_POST["teacher_username"] = $_SESSION["username"];
         $s_username = $_POST["username"];
@@ -20,8 +20,14 @@
         $s_email = $_POST["email"];
         $s_phone = $_POST["phone"];
         
-
-        if(!is_valid_username($s_username)){
+         // check sql injection 
+        $s_password= mysqli_real_escape_string($db, $s_password);
+        $s_username= mysqli_real_escape_string($db, $s_username);
+        $s_confirm_password= mysqli_real_escape_string($db, $s_confirm_password);
+        $s_email= mysqli_real_escape_string($db, $s_email);
+        $s_phone= mysqli_real_escape_string($db, $s_phone);
+        $s_fullname= mysqli_real_escape_string($db, $s_fullname);
+        if(!is_valid_username($db,$s_username)){
             $msg_username = "Username must have lowercase characters (a-z) or numbers (0-9) or 
                             underscores(_), no special character and length from 5 to 30!";
         }
@@ -34,10 +40,10 @@
         elseif($s_password != $s_confirm_password){
             $msg_password = "The password confirmation does not match";
         }
-        elseif(!is_valid_fullname($s_fullname)){
+        elseif(!is_valid_fullname($db,$s_fullname)){
             $msg_fullname = "Full name must have characters (a-z or A-Z), start with upper case and
                                 length from 5 to 30";
-        }elseif(!is_valid_phone($s_phone)){
+        }elseif(!is_valid_phone($db,$s_phone)){
             $msg_phone = "Invalid phone number";
         }
         else{
