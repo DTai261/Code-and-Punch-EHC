@@ -1,54 +1,63 @@
 <?php
+    include "../config.php";
+    require_once("../dbhelp.php");
     session_start();
     if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
     {
         header("location: ..");
     }
-    $target_dir = "../Assignment/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
+    //create path to folder
+    $Assignment_name =  $_POST["Assignment_name"];
+    $teacher_name = $_SESSION["username"];
+    $dir = "../Assignment/" . $teacher_name;
+
+
+    //Create teacher folder to push assignment in
+    if(is_dir($dir) === false )
+    {
+        mkdir($dir);
     }
 
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
+    if(isset($_FILES["uploaded_file"])){
+        $file = $_FILES["uploaded_file"];
 
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
+        //file properties
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+        $file_error = $file['error'];
 
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "pdf" ) {
-    echo "Sorry, only JPG, JPEG, PNG & PDF files are allowed.";
-    $uploadOk = 0;
-    }
+        //get file extension
+        $file_ext = explode('.', $file_name);
+        $file_ext = strtolower(end($file_ext));
 
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+        $allowed = array('txt', 'pdf');    
+
+        if(in_array($file_ext, $allowed)){
+            if($file_error === 0){
+                if($file_size <= 10000000){
+                    $new_name =  $teacher_name . "." . $Assignment_name  . "." . $file_ext;
+                    $file_destination = $dir . "/" . $new_name;
+
+                    //check file already exist
+                    if (file_exists($file_destination)){
+                        header("location: UpLoadAssignment.php?msg=exist");
+                    }
+                    elseif(move_uploaded_file($file_tmp, $file_destination)){
+                        header("location: UpLoadAssignment.php?msg=success");
+                    }
+                }
+                else{
+                    header("location: UpLoadAssignment.php?msg=size");
+                }
+            }
+            else{
+                header("location: UpLoadAssignment.php?msg=error");
+            }
+        }
+        else{
+            header("location: UpLoadAssignment.php?msg=type");
+        }
     }
 ?>

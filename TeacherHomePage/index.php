@@ -26,7 +26,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="#">
+            <form action="ListAssignment.php">
                 <button class="button" style="background: Green;">List of assignments </button>
             </form>
         </div>
@@ -42,7 +42,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="UpLoadAssignment.html">
+            <form action="UpLoadAssignment.php">
                 <button class="button" style="background: #0C6AF5;">Upload assignment </button>
             </form>
         </div>
