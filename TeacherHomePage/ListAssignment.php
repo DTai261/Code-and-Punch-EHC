@@ -1,5 +1,6 @@
 
 <?php
+    error_reporting(0);
     session_start();
     if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
     {
@@ -37,14 +38,21 @@
                     <td>Submitted</td>
                 </tr>
                 <?php    
+                    $allowed = array('txt', 'pdf');
                     for($i = 2; $i < sizeof($file_sc); $i++){
-                        echo "<tr>";
-                        echo "<td>". ($i - 1) ."</td>";
-                        echo "<td>". $file_sc[$i] ."</td>";
-                        $file_dir =$dir . "/" . $file_sc[$i];
-                        echo '<td><a href="'. $file_dir .'">Download</a></td>';
-                        echo '<td><a href="'. $dir .'">Submitted</a></td>';
-                        echo "</tr>";
+                        $file_ext = explode('.', $file_sc[$i]);
+                        $file_ext = strtolower(end($file_ext));
+                        
+                        //only list file assignment
+                        if(in_array($file_ext, $allowed)){
+                            echo "<tr>";
+                            echo "<td>". ($i - 1) ."</td>";
+                            echo "<td>". $file_sc[$i] ."</td>";
+                            $file_dir =$dir . "/" . $file_sc[$i];
+                            echo '<td><a href="'. $file_dir .'">Download</a></td>';
+                            echo '<td><a href="'. $dir .'">Submitted</a></td>';
+                            echo "</tr>";
+                        }
                     }
                 ?>
                 
