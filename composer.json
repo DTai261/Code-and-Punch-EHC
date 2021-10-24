@@ -1,7 +1,7 @@
 {
     "autoload":{
         "psr-4": {
-            "App\\" : "Codo-and-punch-EHC"
+            "App\\" : "Code-and-punch-EHC"
         }
     }
 }
