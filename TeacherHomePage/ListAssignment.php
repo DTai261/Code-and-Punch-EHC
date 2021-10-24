@@ -39,19 +39,23 @@
                 </tr>
                 <?php    
                     $allowed = array('txt', 'pdf');
+                    $count = 1;
                     for($i = 2; $i < sizeof($file_sc); $i++){
                         $file_ext = explode('.', $file_sc[$i]);
                         $file_ext = strtolower(end($file_ext));
                         
                         //only list file assignment
                         if(in_array($file_ext, $allowed)){
+                            $link = $file_sc[$i];
+                            $link = $dir . "/" . explode(".", $link)[0] . "." . explode(".", $link)[1] . ".submit";
                             echo "<tr>";
-                            echo "<td>". ($i - 1) ."</td>";
+                            echo "<td>". $count ."</td>";
                             echo "<td>". $file_sc[$i] ."</td>";
                             $file_dir =$dir . "/" . $file_sc[$i];
                             echo '<td><a href="'. $file_dir .'">Download</a></td>';
-                            echo '<td><a href="'. $dir .'">Submitted</a></td>';
+                            echo '<td><a href="ListSubmitted.php?link='. $link .'">Submitted</a></td>';
                             echo "</tr>";
+                            $count ++;
                         }
                     }
                 ?>
