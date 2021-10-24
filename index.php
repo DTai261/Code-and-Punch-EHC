@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$_SESSION["username"]=$username;
     $_SESSION["usertype"] = "student";
 
-		header("location:StudentHomePage/index.php");
+		header("location:StudentHomePage");
 	}
 
 	elseif($row["usertype"]=="teacher"){
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$_SESSION["username"]=$username;
     $_SESSION["usertype"] = "teacher";
 
-		header("location:TeacherHomepage/index.php");
+		header("location:TeacherHomepage");
 	}
 
 	else{
