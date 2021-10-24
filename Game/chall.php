@@ -43,6 +43,7 @@ if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
       <p>
         File:
       </p>
+      <input type="text" name="user" value="<?=$teacher_username?>" style=" display : none ;" >
       <input type="hidden" name="size" value="35000">
       <input type="file" name="LoadFile" id="LoadFile"> 
       <br></br>

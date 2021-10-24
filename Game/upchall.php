@@ -1,6 +1,8 @@
 <?php
 include "../config.php";
-include 'chall.php';
+include 'chall.php'; 
+
+$teacher = $_SESSION['username'];
 // Đường dẫn để lưu trữ file đó
 $folder_path = "challenge/";
 $file_path = $folder_path . $_FILES["LoadFile"]["name"];
@@ -13,14 +15,13 @@ $challenge=($_FILES["LoadFile"]["name"]);
 $con12 = $db;
 
 // Lưu thông tin challenge(chính là câu trả lời) và hints vào database
-$sql = "INSERT INTO challenge (challenge,hints) VALUES ('$challenge', '$hints')";
+$sql = "INSERT INTO challenge (challenge,hints,teacher) VALUES ('$challenge', '$hints', '$teacher')";
 mysqli_query($con12,$sql);
 
 // Lưu file đó vào server
 if($file_type == "text/plain"){
     if(move_uploaded_file($_FILES["LoadFile"]["tmp_name"],$file_path ))
     {
-
     // Thông báo với người dùng là đã upload thành công 
     echo "The file ". basename( $_FILES["LoadFile"]["name"]). " has been uploaded successfully!";
     }

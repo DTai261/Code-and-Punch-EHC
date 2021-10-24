@@ -38,11 +38,6 @@
             </form>
         </div>
         <div class="container">
-            <form action="submit.php">
-                <button class="button" style="background: #0C6AF5;">submit assignment </button>
-            </form>
-        </div>
-        <div class="container">
             <form action="UpdateProfile.php" method="get">
                 <input type="hidden" name="username" value="<?php echo $_SESSION["username"]; ?>"/>
                 <button type="submit" class="button" style="background: #EBF50C;">UPDATE YOUR PROFILE</button>           

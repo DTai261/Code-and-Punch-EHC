@@ -8,14 +8,21 @@
   </form>
 <?php
 include "../config.php";
+require_once('../dbhelp.php');
 error_reporting(0);
+session_start();
+if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "student")
+{
+    header("location: ..");
+}
+$teacher = get_teacher($db, $_SESSION["username"]);
 $conn = $db;
 
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT hints from challenge ORDER BY chalID DESC LIMIT 1";
+$sql = "SELECT hints from challenge WHERE teacher='$teacher' ORDER BY chalID DESC LIMIT 1";
 mysqli_query($conn, $sql);
 $result = mysqli_query($conn, $sql);
 
