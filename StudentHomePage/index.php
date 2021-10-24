@@ -11,7 +11,7 @@
 <html>
     <head>
         <title>Student Home Page</title>
-        <link rel="stylesheet" href="../css/HomePage.css">
+        <link rel="stylesheet" href="../css/Homepage.css">
     </head>
     <body>
         <?php
