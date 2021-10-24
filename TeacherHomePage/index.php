@@ -13,7 +13,7 @@
 <html>
     <head>
         <title>Teacher Home Page</title>
-        <link rel="stylesheet" href="../css/HomePage.css">
+        <link rel="stylesheet" href="../css/Homepage.css">
     </head>
     <body>
         <?php
