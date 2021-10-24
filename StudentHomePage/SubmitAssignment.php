@@ -3,6 +3,7 @@
     include "../config.php";
     require_once("../dbhelp.php");
     session_start();
+    error_reporting(0);
     if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "student")
     {
         header("location: ..");
