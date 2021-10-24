@@ -5,7 +5,6 @@
     $msg_username = $msg_confirmation_password = $msg_fullname = "";
     $msg_weak_passowrd = "*Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter.";
     $success;
-    $db=mysqli_connect('localhost', 'root', '','demo');
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = $_POST["password"];
         $confirm_password = $_POST["confirm_password"];

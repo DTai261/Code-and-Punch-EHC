@@ -4,7 +4,6 @@ session_start();
 error_reporting(0); 
 $error = false;
 $msg = "";
-$db=mysqli_connect('localhost', 'root', '','demo');
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
 	$username=$_POST["username"];
