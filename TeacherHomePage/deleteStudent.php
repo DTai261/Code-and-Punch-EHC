@@ -1,7 +1,6 @@
 <?php
     include "../config.php";
     include "../dbhelp.php";
-    $db=mysqli_connect('localhost', 'root', '','demo');
     $id = isset($_POST['id']) ? (int)$_POST['id'] : '';
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     // // check sql injection

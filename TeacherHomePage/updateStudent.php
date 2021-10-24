@@ -2,7 +2,6 @@
     include "../config.php";
     require_once('../dbhelp.php');
     session_start();
-    $db=mysqli_connect('localhost', 'root', '','demo');
     if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher" || !isset($_POST))
     {
         header("location: ..");
