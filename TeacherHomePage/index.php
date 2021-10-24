@@ -31,7 +31,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="#">
+            <form action="../Game/chall.php">
                 <button class="button" style="background: #9BE017;">Games </button>
             </form>
         </div>
