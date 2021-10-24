@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$_SESSION["username"]=$username;
     $_SESSION["usertype"] = "teacher";
 
-		header("location: TeacherHomepage/index.php");
+		header("location: TeacherHomePage/index.php");
 	}
 
 	else{
