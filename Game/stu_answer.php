@@ -7,8 +7,9 @@
       <input class="btn btn-success" type="submit" value="Go back!" >
   </form>
 <?php
+include "../config.php";
 error_reporting(0);
-$conn = mysqli_connect("localhost","root" , "", "demo");
+$conn = $db;
 
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());

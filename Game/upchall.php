@@ -1,5 +1,5 @@
 <?php
-// include "../dbhelp.php";
+include "../config.php";
 include 'chall.php';
 // Đường dẫn để lưu trữ file đó
 $folder_path = "challenge/";
@@ -10,14 +10,6 @@ $file_type = $_FILES["LoadFile"]["type"];
 $hints=$_POST["hints"];
 $challenge=($_FILES["LoadFile"]["name"]);
 
-$host = "localhost";
-    $user = "root";
-    $password = "";
-    $db = "demo";
-
-    // session_start();
-
-$db = mysqli_connect($host, $user, $password, $db) or die("Cannot connect to the database");
 $con12 = $db;
 
 // Lưu thông tin challenge(chính là câu trả lời) và hints vào database
