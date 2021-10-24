@@ -4,17 +4,19 @@ session_start();
 error_reporting(0); 
 $error = false;
 $msg = "";
-
+$db=mysqli_connect('localhost', 'root', '','demo');
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
 	$username=$_POST["username"];
 	$password=$_POST["password"];
-
-	$sql="select * from user where username='".$username."' AND password='".$password."'";
-
-	$result=mysqli_query($db,$sql);
-
-	$row=mysqli_fetch_array($result);
+  
+	  // check sql injection
+    $username= mysqli_real_escape_string($db, $username );
+    $password= mysqli_real_escape_string($db, $password);
+   
+     $sql="select * from user where username='".$username."' AND password='".$password."'";
+     $result=mysqli_query($db,$sql);
+     $row=mysqli_fetch_array($result);
 
 	if($row["usertype"]=="student"){	
 
