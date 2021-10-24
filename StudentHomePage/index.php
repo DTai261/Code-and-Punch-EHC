@@ -29,7 +29,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="#">
+            <form action="../Game/stu_answer.php">
                 <button class="button" style="background: #9BE017;">Games </button>
             </form>
         </div><div class="container">
@@ -38,7 +38,7 @@
             </form>
         </div>
         <div class="container">
-            <form action="#">
+            <form action="submit.php">
                 <button class="button" style="background: #0C6AF5;">submit assignment </button>
             </form>
         </div>
