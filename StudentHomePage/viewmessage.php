@@ -8,20 +8,30 @@
     include "../config.php";
     require_once("../dbhelp.php");
     $student = $_SESSION["username"];
-    $teacher = get_teacher($db, $student);
-    $desination = "../Chat/" . $teacher . "." . $student . ".txt";
-    $chat_log = [];
+    $file = scandir("../Chat");
+    $all_file =[];
 
-    $fh = fopen($desination, 'r');
-    $count = 0;
-    while ($line = fgets($fh)) {
-        $tmp = getBetween($line, "=START=", "=END=");
-        if(isset($tmp)){
-            $chat_log[$count] = $tmp[0];
-            $count ++;
+    //get all file that is the message sent for this user
+    for($i = 2; $i < sizeof($file); $i++){
+        if(explode(".", $file[$i])[1] == $student){
+            array_push($all_file, explode(".", $file[$i])[0], $file[$i]);
         }
     }
-    fclose($fh);
+    
+    for($i =0; $i < sizeof($all_file); $i++){
+        $fh = fopen($desination, 'r');
+        $count = 0;
+        while ($line = fgets($fh)) {
+            $tmp = getBetween($line, "=START=", "=END=");
+            if(isset($tmp)){
+                $chat_log[$count] = $tmp[0];
+                $count ++;
+            }
+        }
+        fclose($fh);
+    }
+
+    
 
     function getBetween($content, $start, $end) {
         $n = explode($start, $content);

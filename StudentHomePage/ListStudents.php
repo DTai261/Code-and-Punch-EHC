@@ -31,6 +31,7 @@
                 <td>Fullname</td>
                 <td>Email</td>
                 <td>Phone number</td>
+                <td>Options</td>
             </tr>
             <?php foreach ($students as $item){ ?>
             <tr>
@@ -38,6 +39,13 @@
                 <td><?=$item['fullname']?></td>
                 <td><?=$item['mail']?></td>
                 <td><?=$item['phone']?></td>
+                <td>
+                    <form method="post" action="deleteStudent.php">
+                        <input class="btn btn-success" onclick="window.location = 'sendchat.php?student=<?=$item['username']?>'" type="button" value="Chat"/>
+                        
+                    </form>
+                    
+                </td>
             </tr>
             <?php } ?>
         </table>

@@ -30,7 +30,7 @@ if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
   </head>
   <body>
     <br>
-  <form action="../TeacherHomepage">
+  <form action="../TeacherHomePage">
       <input class="btn btn-success" type="submit" value="Go back!" >
   </form>
     <form method="post" action="upchall.php" enctype="multipart/form-data">
