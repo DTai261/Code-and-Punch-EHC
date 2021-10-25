@@ -23,10 +23,13 @@ if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Challenge</title>
     <link rel="stylesheet" href="../css/Homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
   </head>
   <body>
-    
+    <br>
   <form action="../TeacherHomepage">
       <input class="btn btn-success" type="submit" value="Go back!" >
   </form>
@@ -47,7 +50,7 @@ if(!isset($_SESSION["username"]) || $_SESSION["usertype"] != "teacher")
       <input type="hidden" name="size" value="35000">
       <input type="file" name="LoadFile" id="LoadFile"> 
       <br></br>
-      <input TYPE="submit" name="submit" value="Add Challenge"/>
+      <input class="btn btn-success" TYPE="submit" name="submit" value="Add Challenge"/>
     </form>
   </body>
 </html>

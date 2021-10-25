@@ -45,7 +45,7 @@
                         <input type="hidden" name="id" value="<?php echo $item['ID']; ?>"/>
                         <input type="hidden" name="username" value="<?php echo $item['username']; ?>"/>
                         <input class="btn btn-success" onclick="return confirm('Are you sure want to delete?');" type="submit" name="delete" value="Delete"/>
-                        <input class="btn btn-success" onclick="window.location = 'chat.php?id=<?=$item['ID']?>'" type="button" value="Chat"/>
+                        <input class="btn btn-success" onclick="window.location = 'sendchat.php?student=<?=$item['username']?>'" type="button" value="Chat"/>
                         
                     </form>
                     

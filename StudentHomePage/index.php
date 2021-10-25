@@ -33,7 +33,7 @@
                 <button class="button" style="background: #9BE017;">Games </button>
             </form>
         </div><div class="container">
-            <form action="#">
+            <form action="viewmessage.php">
                 <button class="button" style="background: #00FED2;">views message</button>
             </form>
         </div>
