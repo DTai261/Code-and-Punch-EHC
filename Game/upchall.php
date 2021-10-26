@@ -13,7 +13,10 @@ $hints=$_POST["hints"];
 $challenge=($_FILES["LoadFile"]["name"]);
 
 $con12 = $db;
-
+// check sql 
+$teacher = mysqli_real_escape_string($db, $teacher);
+$hints= mysqli_real_escape_string($db, $hints);
+$challenge= mysqli_real_escape_string($db, $challenge);
 // Lưu thông tin challenge(chính là câu trả lời) và hints vào database
 $sql = "INSERT INTO challenge (challenge,hints,teacher) VALUES ('$challenge', '$hints', '$teacher')";
 mysqli_query($con12,$sql);

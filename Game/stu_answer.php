@@ -21,7 +21,7 @@ $conn = $db;
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
-
+$teacher= mysqli_real_escape_string($db, $teacher);
 $sql = "SELECT hints from challenge WHERE teacher='$teacher' ORDER BY chalID DESC LIMIT 1";
 mysqli_query($conn, $sql);
 $result = mysqli_query($conn, $sql);
