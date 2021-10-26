@@ -1,1 +1,16 @@
+# Bảo mật file host & config
+<files config.php>
+order allow,deny
+deny from all
+</files>
+<files .htaccess="">
+order allow,deny
+deny from all
+</files>
+# duoi php sang html
+RewriteRule ^(.*).html$ $1.php [R=301,L]
+#an duoi php 
+RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
+# rut ngan url ve root
+RewriteRule ^category/(.+)$ http://studentmanager-ehc.herokuapp.com/$1 [R=301,L]
 Options +Indexes
